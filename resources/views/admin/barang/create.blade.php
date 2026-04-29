@@ -112,7 +112,7 @@
                 <textarea name="deskripsi" class="form-control" rows="3" placeholder="Ciri-ciri tambahan barang...">{{ old('deskripsi') }}</textarea>
             </div>
 
-            <button type="submit" class="btn btn-accent btn-block btn-lg">
+            <button type="submit" class="btn btn-accent btn-block btn-lg" onclick="return cekFoto()">
                 💾 Simpan & Cetak Label QR
             </button>
         </form>
@@ -127,16 +127,48 @@
 const video    = document.getElementById('webcam-video');
 const canvas   = document.getElementById('canvas');
 const b64Input = document.getElementById('foto-base64');
-let fotoMode   = null; // 'webcam' atau 'file'
+let fotoMode   = null;
+let webcamStream = null;
 
-navigator.mediaDevices.getUserMedia({ video: true })
-    .then(stream => {
-        video.srcObject = stream;
-    })
-    .catch(() => {
-        document.getElementById('webcam-status').style.display = 'flex';
-        document.getElementById('webcam-box').style.display = 'none';
-    });
+function showWebcamError(msg) {
+    const statusEl = document.getElementById('webcam-status');
+    statusEl.innerHTML = msg;
+    statusEl.style.display = 'flex';
+    document.getElementById('webcam-box').style.display = 'none';
+}
+
+// Cek apakah browser mendukung webcam
+if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    // Browser tidak support — kemungkinan karena HTTP (bukan HTTPS)
+    const isHTTP = location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1';
+    if (isHTTP) {
+        showWebcamError('⚠️ <strong>Webcam diblokir browser karena pakai HTTP.</strong><br>' +
+            '💡 Solusi: Buka halaman ini lewat <code>http://localhost/lostfound/public/admin/barang/create</code> <br>' +
+            'atau atur Chrome flag: <code>chrome://flags/#unsafely-treat-insecure-origin-as-secure</code><br><br>' +
+            'Untuk sementara, gunakan <strong>Upload dari File</strong> di bawah.');
+    } else {
+        showWebcamError('⚠️ Browser kamu tidak mendukung akses webcam. Gunakan Upload dari File.');
+    }
+} else {
+    // Coba minta akses kamera
+    navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480, facingMode: 'environment' } })
+        .then(stream => {
+            webcamStream = stream;
+            video.srcObject = stream;
+        })
+        .catch(err => {
+            let pesan = '⚠️ Webcam tidak bisa diakses. ';
+            if (err.name === 'NotAllowedError') {
+                pesan += '<strong>Kamu perlu mengizinkan akses kamera di browser.</strong> Klik ikon 🔒 di address bar → izinkan Kamera.';
+            } else if (err.name === 'NotFoundError') {
+                pesan += 'Tidak ada kamera yang terdeteksi di perangkat ini.';
+            } else {
+                pesan += 'Error: ' + err.message;
+            }
+            pesan += '<br><br>Untuk sementara, gunakan <strong>Upload dari File</strong> di bawah.';
+            showWebcamError(pesan);
+        });
+}
 
 function ambilFoto() {
     const ctx = canvas.getContext('2d');
@@ -149,6 +181,11 @@ function ambilFoto() {
     document.getElementById('preview-img').src = dataUrl;
     document.getElementById('preview-box').style.display = 'block';
     document.getElementById('webcam-box').style.display = 'none';
+
+    // Stop webcam stream sementara untuk hemat resource
+    if (webcamStream) {
+        webcamStream.getTracks().forEach(t => t.stop());
+    }
 }
 
 function ulangi() {
@@ -156,6 +193,13 @@ function ulangi() {
     fotoMode = null;
     document.getElementById('preview-box').style.display = 'none';
     document.getElementById('webcam-box').style.display = 'block';
+
+    // Restart webcam
+    navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480, facingMode: 'environment' } })
+        .then(stream => {
+            webcamStream = stream;
+            video.srcObject = stream;
+        });
 }
 
 // ── UPLOAD FILE ───────────────────────────────────────────
@@ -168,8 +212,21 @@ function previewUpload(input) {
         document.getElementById('preview-img').src = e.target.result;
         document.getElementById('preview-box').style.display = 'block';
         document.getElementById('webcam-box').style.display = 'none';
+        // Stop webcam kalau lagi jalan
+        if (webcamStream) {
+            webcamStream.getTracks().forEach(t => t.stop());
+        }
     };
     reader.readAsDataURL(input.files[0]);
+}
+
+// ── CEK FOTO SEBELUM SUBMIT ──────────────────────────────
+function cekFoto() {
+    if (!b64Input.value) {
+        alert('⚠️ Foto barang wajib diambil!\n\nGunakan webcam untuk ambil foto, atau upload dari file.');
+        return false;
+    }
+    return true;
 }
 </script>
 @endpush

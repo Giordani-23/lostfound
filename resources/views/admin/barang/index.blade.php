@@ -64,7 +64,7 @@
                     <td>
                         <div style="width:50px;height:50px;border-radius:8px;overflow:hidden;background:var(--bg)">
                             @if($barang->foto_utama)
-                                <img src="{{ asset('storage/barang/' . $barang->foto_utama) }}"
+                                <img src="{{ asset('barang/' . $barang->foto_utama) }}"
                                      style="width:100%;height:100%;object-fit:cover">
                             @else
                                 <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem">📷</div>

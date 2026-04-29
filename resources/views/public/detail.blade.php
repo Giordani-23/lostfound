@@ -18,7 +18,7 @@
                 <div style="background:#fff;padding:1rem;border-radius:var(--radius);box-shadow:var(--shadow-sm);border:1px solid var(--border)">
                     <div style="border-radius:var(--radius-sm);overflow:hidden;background:var(--bg);aspect-ratio:4/3">
                         @if($barang->foto_utama)
-                            <img src="{{ asset('storage/barang/' . $barang->foto_utama) }}"
+                            <img src="{{ asset('barang/' . $barang->foto_utama) }}"
                                  alt="{{ $barang->nama_barang }}"
                                  style="width:100%;height:100%;object-fit:cover">
                         @else

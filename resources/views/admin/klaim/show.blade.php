@@ -17,7 +17,7 @@
 
         <div style="border-radius:var(--radius-sm);overflow:hidden;background:var(--bg);height:220px;margin-bottom:1.25rem">
             @if($klaim->barang->foto_utama)
-                <img src="{{ asset('storage/barang/' . $klaim->barang->foto_utama) }}"
+                <img src="{{ asset('barang/' . $klaim->barang->foto_utama) }}"
                      style="width:100%;height:100%;object-fit:cover">
             @else
                 <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">📷</div>

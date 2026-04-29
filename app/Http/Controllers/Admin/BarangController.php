@@ -48,21 +48,32 @@ class BarangController extends Controller
             'ditemukan_oleh'    => 'required|string|max:100',
         ]);
 
+        // Validasi: foto WAJIB (dari webcam atau upload)
+        if (!$request->filled('foto_base64') && !$request->hasFile('foto_file')) {
+            return back()->withInput()->withErrors(['foto' => 'Foto barang wajib diambil! Gunakan webcam atau upload file.']);
+        }
+
         $fotoPath = null;
+        $saveTo   = public_path('barang');
+
+        // Pastikan folder ada
+        if (!file_exists($saveTo)) {
+            mkdir($saveTo, 0755, true);
+        }
 
         // Proses foto dari webcam (base64)
         if ($request->filled('foto_base64')) {
             $base64 = $request->foto_base64;
             $base64 = preg_replace('/^data:image\/\w+;base64,/', '', $base64);
             $nama   = 'barang_' . time() . '.jpg';
-            Storage::put('public/barang/' . $nama, base64_decode($base64));
+            file_put_contents($saveTo . '/' . $nama, base64_decode($base64));
             $fotoPath = $nama;
         }
         // Proses foto dari upload file
         elseif ($request->hasFile('foto_file')) {
-            $file     = $request->file('foto_file');
-            $nama     = 'barang_' . time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/barang', $nama);
+            $file = $request->file('foto_file');
+            $nama = 'barang_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move($saveTo, $nama);
             $fotoPath = $nama;
         }
 
