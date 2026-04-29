@@ -51,11 +51,6 @@
         <p class="text-center mt-4" style="font-size:0.95rem;font-weight:600">
             <a href="{{ route('home') }}" style="color:var(--text-muted)">← Kembali ke Beranda</a>
         </p>
-
-        <div style="background:#fff;border-radius:16px;padding:1rem 1.5rem;margin-top:2rem;border:2px dashed var(--border-dark);text-align:center">
-            <p style="font-size:0.85rem;color:var(--text-muted);font-weight:600;margin-bottom:0.25rem">🔑 Akun Demo (untuk testing):</p>
-            <p style="font-size:0.9rem;color:var(--accent);font-weight:800">admin@smkn1sby.sch.id <span style="color:var(--text-muted);font-weight:500">/</span> Buyunitacantik123</p>
-        </div>
     </div>
 </div>
 
