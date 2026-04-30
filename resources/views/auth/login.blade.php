@@ -7,10 +7,7 @@
 <div style="min-height:80vh;display:flex;align-items:center;justify-content:center;padding:2rem">
     <div style="width:100%;max-width:440px">
 
-        <div class="text-center mb-4">
-            <div style="width:72px;height:72px;background:var(--primary-subtle);color:var(--primary);border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto 1.25rem">
-                👋
-            </div>
+        <div class="text-center mb-4">  
             <h1 style="font-size:1.8rem;font-weight:900;color:var(--accent);letter-spacing:-0.02em">Halo, Admin!</h1>
             <p style="color:var(--text-muted);font-size:1rem;font-weight:500">Silakan login untuk kelola data.</p>
         </div>

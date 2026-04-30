@@ -20,7 +20,7 @@
             <h3 style="font-weight:700;margin-bottom:1rem">📷 Foto Barang</h3>
             <div style="border-radius:var(--radius-sm);overflow:hidden;background:var(--bg);aspect-ratio:4/3">
                 @if($barang->foto_utama)
-                    <img src="{{ asset('barang/' . $barang->foto_utama) }}"
+                    <img src="{{ asset('uploads/barang/' . $barang->foto_utama) }}"
                          alt="{{ $barang->nama_barang }}" style="width:100%;height:100%;object-fit:cover">
                 @else
                     <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);gap:8px">

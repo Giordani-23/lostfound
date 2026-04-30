@@ -54,7 +54,7 @@ class BarangController extends Controller
         }
 
         $fotoPath = null;
-        $saveTo   = public_path('barang');
+        $saveTo   = public_path('uploads/barang');
 
         // Pastikan folder ada
         if (!file_exists($saveTo)) {
@@ -142,7 +142,7 @@ class BarangController extends Controller
         $barang = Barang::findOrFail($id);
 
         if ($barang->foto_utama) {
-            Storage::delete('public/barang/' . $barang->foto_utama);
+            @unlink(public_path('uploads/barang/' . $barang->foto_utama));
         }
 
         $barang->delete();

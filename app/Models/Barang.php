@@ -25,9 +25,21 @@ class Barang extends Model
      */
     public static function generateKode(): string
     {
-        $tahun = date('Y');
-        $count = self::whereYear('created_at', $tahun)->count() + 1;
-        return 'LF-' . $tahun . '-' . str_pad($count, 4, '0', STR_PAD_LEFT);
+        $tahun  = date('Y');
+        $prefix = 'LF-' . $tahun . '-';
+
+        // Cari nomor urut terakhir yang sudah ada di tahun ini
+        $last = self::where('kode_unik', 'like', $prefix . '%')
+                    ->orderByRaw("CAST(SUBSTRING(kode_unik, " . (strlen($prefix) + 1) . ") AS UNSIGNED) DESC")
+                    ->value('kode_unik');
+
+        $nextNumber = 1;
+        if ($last) {
+            $lastNumber = (int) str_replace($prefix, '', $last);
+            $nextNumber = $lastNumber + 1;
+        }
+
+        return $prefix . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
     }
 
     /**

@@ -93,7 +93,7 @@
                 <a href="{{ route('barang.show', $barang->id) }}" class="barang-card card-hover">
                     <div class="barang-card-img">
                         @if($barang->foto_utama)
-                            <img src="{{ asset('barang/' . $barang->foto_utama) }}" alt="{{ $barang->nama_barang }}">
+                            <img src="{{ asset('uploads/barang/' . $barang->foto_utama) }}" alt="{{ $barang->nama_barang }}">
                         @else
                             <div class="no-photo"><span>📷</span>Belum ada foto</div>
                         @endif
