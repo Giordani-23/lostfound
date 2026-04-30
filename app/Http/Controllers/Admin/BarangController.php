@@ -103,6 +103,14 @@ class BarangController extends Controller
         return view('admin.barang.show', compact('barang', 'qrCode'));
     }
 
+    // Cetak label QR (halaman khusus print)
+    public function printLabel($id)
+    {
+        $barang = Barang::findOrFail($id);
+        $qrCode = QrCode::format('svg')->size(140)->generate(route('barang.show', $barang->id));
+        return view('admin.barang.print-label', compact('barang', 'qrCode'));
+    }
+
     // Form edit barang
     public function edit($id)
     {

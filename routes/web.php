@@ -26,9 +26,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // Barang (CRUD)
     Route::resource('barang', BarangController::class);
+    Route::get('/barang/{id}/print-label', [BarangController::class, 'printLabel'])->name('barang.print-label');
 
     // Klaim
     Route::get('/klaim', [KlaimController::class, 'index'])->name('klaim.index');
     Route::get('/klaim/{id}', [KlaimController::class, 'show'])->name('klaim.show');
+    Route::get('/klaim/{id}/print-struk', [KlaimController::class, 'printStruk'])->name('klaim.print-struk');
     Route::post('/klaim/{id}/update', [KlaimController::class, 'update'])->name('klaim.update');
 });

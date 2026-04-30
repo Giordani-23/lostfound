@@ -29,6 +29,13 @@ class KlaimController extends Controller
         return view('admin.klaim.show', compact('klaim'));
     }
 
+    // Cetak struk serah terima (halaman khusus print)
+    public function printStruk($id)
+    {
+        $klaim = Klaim::with('barang')->findOrFail($id);
+        return view('admin.klaim.print-struk', compact('klaim'));
+    }
+
     // Setujui atau tolak klaim
     public function update(Request $request, $id)
     {

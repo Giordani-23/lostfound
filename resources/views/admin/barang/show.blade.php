@@ -44,12 +44,9 @@
                 <p style="font-size:0.75rem;color:var(--text-muted)">📍 {{ $barang->lokasi_ditemukan }}</p>
                 <p style="font-size:0.75rem;color:var(--text-muted)">📅 {{ \Carbon\Carbon::parse($barang->tanggal_ditemukan)->format('d/m/Y') }}</p>
             </div>
-            <button onclick="window.print()" class="btn btn-accent btn-block mt-2">
+            <a href="{{ route('admin.barang.print-label', $barang->id) }}" target="_blank" class="btn btn-accent btn-block mt-2">
                 🖨️ Cetak Label QR
-            </button>
-            <p style="font-size:0.78rem;color:var(--text-muted);text-align:center;margin-top:0.5rem">
-                Pastikan thermal printer sudah jadi default printer
-            </p>
+            </a>
         </div>
     </div>
 
@@ -146,42 +143,6 @@
     </div>
 </div>
 
-{{-- STRUK SERAH TERIMA (hanya muncul saat print) --}}
-@php $klaimDisetujui = $barang->klaims->where('status','disetujui')->first(); @endphp
-@if($klaimDisetujui)
-<div id="struk-cetak">
-    <div style="text-align:center;border-bottom:1px dashed #000;padding-bottom:4mm;margin-bottom:3mm">
-        <p style="font-weight:700;font-size:10pt">SMKN 1 SURABAYA</p>
-        <p style="font-size:8pt">BUKTI SERAH TERIMA BARANG</p>
-        <p style="font-size:8pt">LOST & FOUND</p>
-    </div>
-    <table style="width:100%;font-size:8pt;border-collapse:collapse">
-        <tr><td style="width:35%;padding:1mm 0">No. Kode</td><td>: {{ $barang->kode_unik }}</td></tr>
-        <tr><td>Barang</td><td>: {{ $barang->nama_barang }}</td></tr>
-        <tr><td>Kondisi</td><td>: {{ $barang->kondisi }}</td></tr>
-    </table>
-    <div style="border-top:1px dashed #000;margin:3mm 0;padding-top:2mm;font-size:8pt">
-        <p style="font-weight:700">DATA PENERIMA:</p>
-        <table style="width:100%;border-collapse:collapse;font-size:8pt">
-            <tr><td style="width:35%">Nama</td><td>: {{ $klaimDisetujui->nama_pengklaim }}</td></tr>
-            <tr><td>Kelas</td><td>: {{ $klaimDisetujui->kelas }}</td></tr>
-            <tr><td>No. HP</td><td>: {{ $klaimDisetujui->no_hp }}</td></tr>
-        </table>
-    </div>
-    <div style="border-top:1px dashed #000;margin:3mm 0;padding-top:2mm;font-size:8pt">
-        <p>Tanggal: {{ now()->format('d/m/Y H:i') }} WIB</p>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-top:4mm;font-size:8pt;text-align:center">
-        <div>
-            <p>Diserahkan oleh,</p>
-            <div style="margin-top:12mm;border-top:1px solid #000;padding-top:2mm">Petugas Piket</div>
-        </div>
-        <div>
-            <p>Diterima oleh,</p>
-            <div style="margin-top:12mm;border-top:1px solid #000;padding-top:2mm">{{ $klaimDisetujui->nama_pengklaim }}</div>
-        </div>
-    </div>
-</div>
-@endif
 
 @endsection
+

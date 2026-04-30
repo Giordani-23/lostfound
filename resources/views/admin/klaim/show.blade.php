@@ -124,57 +124,14 @@
             <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.25rem">
                 Cetak struk serah terima dan minta tanda tangan pemilik saat barang diambil.
             </p>
-            <button onclick="window.print()" class="btn btn-accent btn-lg btn-block">
+            <a href="{{ route('admin.klaim.print-struk', $klaim->id) }}" target="_blank" class="btn btn-accent btn-lg btn-block">
                 🖨️ Cetak Struk Serah Terima
-            </button>
+            </a>
         </div>
         @endif
     </div>
 </div>
 
-{{-- STRUK SERAH TERIMA (hanya muncul saat print) --}}
-<div id="struk-cetak">
-    <div style="text-align:center;border-bottom:1px dashed #000;padding-bottom:4mm;margin-bottom:3mm">
-        <p style="font-weight:700;font-size:11pt">SMKN 1 SURABAYA</p>
-        <p style="font-size:8pt">Jl. SMEA No.4, Wonokromo, Surabaya</p>
-        <div style="margin:2mm 0;border-top:1px solid #000;border-bottom:1px solid #000;padding:1mm 0">
-            <p style="font-weight:700;font-size:9pt">BUKTI SERAH TERIMA BARANG</p>
-            <p style="font-size:8pt">LOST & FOUND</p>
-        </div>
-    </div>
-
-    <table style="width:100%;font-size:8pt;border-collapse:collapse">
-        <tr><td style="width:38%;padding:1mm 0;font-weight:600">Kode Barang</td><td>: {{ $klaim->barang->kode_unik }}</td></tr>
-        <tr><td style="font-weight:600">Nama Barang</td><td>: {{ $klaim->barang->nama_barang }}</td></tr>
-        <tr><td style="font-weight:600">Kondisi</td><td>: {{ $klaim->barang->kondisi }}</td></tr>
-        <tr><td style="font-weight:600">Ditemukan di</td><td>: {{ $klaim->barang->lokasi_ditemukan }}</td></tr>
-    </table>
-
-    <div style="border-top:1px dashed #000;margin:3mm 0;padding-top:2mm;font-size:8pt">
-        <p style="font-weight:700;margin-bottom:1mm">DATA PENERIMA:</p>
-        <table style="width:100%;border-collapse:collapse;font-size:8pt">
-            <tr><td style="width:38%;font-weight:600">Nama</td><td>: {{ $klaim->nama_pengklaim }}</td></tr>
-            <tr><td style="font-weight:600">Kelas</td><td>: {{ $klaim->kelas }}</td></tr>
-            <tr><td style="font-weight:600">No. HP</td><td>: {{ $klaim->no_hp }}</td></tr>
-        </table>
-    </div>
-
-    <div style="border-top:1px dashed #000;margin:3mm 0;padding-top:2mm;font-size:8pt">
-        <p>Tanggal Pengambilan: {{ now()->format('d/m/Y H:i') }} WIB</p>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin-top:6mm;font-size:8pt;text-align:center">
-        <div>
-            <p>Diserahkan oleh,</p>
-            <div style="height:14mm"></div>
-            <div style="border-top:1px solid #000;padding-top:1mm">( Petugas Piket )</div>
-        </div>
-        <div>
-            <p>Diterima oleh,</p>
-            <div style="height:14mm"></div>
-            <div style="border-top:1px solid #000;padding-top:1mm">( {{ $klaim->nama_pengklaim }} )</div>
-        </div>
-    </div>
-</div>
 
 @endsection
+
