@@ -6,6 +6,8 @@
     <title>@yield('title', 'Lost & Found') — SMKN 1 Surabaya</title>
     <meta name="description" content="@yield('meta_desc', 'Sistem Lost & Found digital SMKN 1 Surabaya. Temukan barang hilangmu dengan mudah.')">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
     @stack('styles')
 </head>
 <body>
@@ -30,12 +32,12 @@
 {{-- FLASH MESSAGES --}}
 @if(session('success'))
     <div style="max-width:1200px;margin:2rem auto 0;padding:0 2rem">
-        <div class="alert alert-success">✨ {{ session('success') }}</div>
+        <div class="alert alert-success"><i class="fi fi-sr-check-circle" style="margin-right:6px"></i> {{ session('success') }}</div>
     </div>
 @endif
 @if(session('error'))
     <div style="max-width:1200px;margin:2rem auto 0;padding:0 2rem">
-        <div class="alert alert-error">❌ {{ session('error') }}</div>
+        <div class="alert alert-error"><i class="fi fi-sr-cross-circle" style="margin-right:6px"></i> {{ session('error') }}</div>
     </div>
 @endif
 

@@ -13,14 +13,14 @@
 
     {{-- KOLOM KIRI: INFO BARANG --}}
     <div class="card card-body">
-        <h3 style="font-weight:700;margin-bottom:1rem">📦 Barang yang Diklaim</h3>
+        <h3 style="font-weight:700;margin-bottom:1rem"><i class="fi fi-rr-box-open" style="margin-right:6px"></i> Barang yang Diklaim</h3>
 
         <div style="border-radius:var(--radius-sm);overflow:hidden;background:var(--bg);height:220px;margin-bottom:1.25rem">
             @if($klaim->barang->foto_utama)
                 <img src="{{ asset('uploads/barang/' . $klaim->barang->foto_utama) }}"
                      style="width:100%;height:100%;object-fit:cover">
             @else
-                <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">📷</div>
+                <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem"><i class="fi fi-rr-camera" style="font-size:3rem;color:var(--text-muted)"></i></div>
             @endif
         </div>
 
@@ -50,13 +50,13 @@
         {{-- INFO PENGKLAIM --}}
         <div class="card card-body">
             <div class="d-flex justify-between align-center mb-2">
-                <h3 style="font-weight:700">👤 Data Pengklaim</h3>
+                <h3 style="font-weight:700"><i class="fi fi-rr-user" style="margin-right:6px"></i> Data Pengklaim</h3>
                 @if($klaim->status === 'menunggu')
-                    <span class="badge badge-warning">⏳ Menunggu</span>
+                    <span class="badge badge-warning"><i class="fi fi-rr-clock-three" style="margin-right:3px"></i> Menunggu</span>
                 @elseif($klaim->status === 'disetujui')
-                    <span class="badge badge-success">✅ Disetujui</span>
+                    <span class="badge badge-success"><i class="fi fi-sr-check-circle" style="margin-right:3px"></i> Disetujui</span>
                 @else
-                    <span class="badge badge-danger">❌ Ditolak</span>
+                    <span class="badge badge-danger"><i class="fi fi-sr-cross-circle" style="margin-right:3px"></i> Ditolak</span>
                 @endif
             </div>
 
@@ -76,7 +76,7 @@
 
             {{-- CIRI KHUSUS --}}
             <div style="background:var(--bg);border-radius:var(--radius-sm);padding:1rem;border-left:4px solid var(--accent)">
-                <p style="font-size:0.8rem;font-weight:700;color:var(--accent);margin-bottom:0.4rem">🔑 CIRI KHUSUS YANG DISEBUTKAN</p>
+                <p style="font-size:0.8rem;font-weight:700;color:var(--accent);margin-bottom:0.4rem"><i class="fi fi-rr-key" style="margin-right:4px"></i> CIRI KHUSUS YANG DISEBUTKAN</p>
                 <p style="font-size:0.9rem;line-height:1.7">{{ $klaim->ciri_khusus }}</p>
             </div>
 
@@ -90,7 +90,7 @@
         {{-- FORM VERIFIKASI (hanya jika masih menunggu) --}}
         @if($klaim->status === 'menunggu')
         <div class="card card-body">
-            <h3 style="font-weight:700;margin-bottom:0.5rem">⚖️ Keputusan Verifikasi</h3>
+            <h3 style="font-weight:700;margin-bottom:0.5rem"><i class="fi fi-rr-balance-scale-right" style="margin-right:6px"></i> Keputusan Verifikasi</h3>
             <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.25rem">
                 Cocokkan ciri khusus di atas dengan barang asli sebelum membuat keputusan.
             </p>
@@ -106,11 +106,11 @@
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
                     <button type="submit" name="aksi" value="setujui" class="btn btn-success btn-lg"
                             onclick="return confirm('Setujui klaim ini? Barang akan ditandai sebagai dikembalikan.')">
-                        ✅ Setujui Klaim
+                        <i class="fi fi-sr-check-circle" style="margin-right:4px"></i> Setujui Klaim
                     </button>
                     <button type="submit" name="aksi" value="tolak" class="btn btn-danger btn-lg"
                             onclick="return confirm('Tolak klaim ini? Masukkan alasan penolakan di kolom catatan.')">
-                        ❌ Tolak Klaim
+                        <i class="fi fi-sr-cross-circle" style="margin-right:4px"></i> Tolak Klaim
                     </button>
                 </div>
             </form>
@@ -119,13 +119,13 @@
         {{-- JIKA SUDAH DISETUJUI: Tampilkan tombol cetak struk --}}
         @elseif($klaim->status === 'disetujui')
         <div class="card card-body text-center">
-            <p style="font-size:2rem;margin-bottom:0.5rem">✅</p>
+            <p style="font-size:2rem;margin-bottom:0.5rem"><i class="fi fi-sr-check-circle" style="font-size:2rem;color:var(--success)"></i></p>
             <h3 style="font-weight:700;margin-bottom:0.5rem">Klaim Telah Disetujui</h3>
             <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.25rem">
                 Cetak struk serah terima dan minta tanda tangan pemilik saat barang diambil.
             </p>
             <a href="{{ route('admin.klaim.print-struk', $klaim->id) }}" target="_blank" class="btn btn-accent btn-lg btn-block">
-                🖨️ Cetak Struk Serah Terima
+                <i class="fi fi-rr-print" style="margin-right:4px"></i> Cetak Struk Serah Terima
             </a>
         </div>
         @endif

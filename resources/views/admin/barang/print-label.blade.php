@@ -6,6 +6,9 @@
     <title>Label QR — {{ $barang->kode_unik }}</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <style>
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -148,12 +151,12 @@
     </div>
     <div class="label-kode">{{ $barang->kode_unik }}</div>
     <div class="label-nama">{{ $barang->nama_barang }}</div>
-    <div class="label-info">📍 {{ $barang->lokasi_ditemukan }}</div>
-    <div class="label-info">📅 {{ \Carbon\Carbon::parse($barang->tanggal_ditemukan)->format('d/m/Y') }}</div>
+    <div class="label-info"><i class="fi fi-rr-marker" style="margin-right:2px"></i> {{ $barang->lokasi_ditemukan }}</div>
+    <div class="label-info"><i class="fi fi-rr-calendar" style="margin-right:2px"></i> {{ \Carbon\Carbon::parse($barang->tanggal_ditemukan)->format('d/m/Y') }}</div>
 </div>
 
 <div class="toolbar">
-    <button class="btn-print" onclick="window.print()">🖨️ Cetak Label</button>
+    <button class="btn-print" onclick="window.print()"><i class="fi fi-rr-print" style="margin-right:4px"></i> Cetak Label</button>
     <a href="{{ route('admin.barang.show', $barang->id) }}" class="btn-back">← Kembali</a>
 </div>
 <p class="tip">Pastikan thermal printer (58mm) sudah jadi default printer</p>

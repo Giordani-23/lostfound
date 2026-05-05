@@ -4,7 +4,7 @@
 @section('page-title', 'Daftar Barang Temuan')
 
 @section('topbar-actions')
-    <a href="{{ route('admin.barang.create') }}" class="btn btn-accent">➕ Tambah Barang</a>
+    <a href="{{ route('admin.barang.create') }}" class="btn btn-accent"><i class="fi fi-rr-add" style="margin-right:4px"></i> Tambah Barang</a>
 @endsection
 
 @section('content')
@@ -67,7 +67,7 @@
                                 <img src="{{ asset('uploads/barang/' . $barang->foto_utama) }}"
                                      style="width:100%;height:100%;object-fit:cover">
                             @else
-                                <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem">📷</div>
+                                <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem"><i class="fi fi-rr-camera" style="color:var(--text-muted)"></i></div>
                             @endif
                         </div>
                     </td>
@@ -80,11 +80,11 @@
                     <td style="font-size:0.85rem">{{ \Carbon\Carbon::parse($barang->tanggal_ditemukan)->format('d/m/Y') }}</td>
                     <td>
                         @if($barang->status === 'tersimpan')
-                            <span class="badge badge-success">✅ Tersimpan</span>
+                            <span class="badge badge-success"><i class="fi fi-sr-check-circle" style="margin-right:3px"></i> Tersimpan</span>
                         @elseif($barang->status === 'diklaim')
-                            <span class="badge badge-warning">⏳ Diklaim</span>
+                            <span class="badge badge-warning"><i class="fi fi-rr-clock-three" style="margin-right:3px"></i> Diklaim</span>
                         @else
-                            <span class="badge badge-secondary">✔️ Dikembalikan</span>
+                            <span class="badge badge-secondary"><i class="fi fi-rr-check-double" style="margin-right:3px"></i> Dikembalikan</span>
                         @endif
                     </td>
                     <td>
@@ -102,7 +102,7 @@
                     <tr>
                         <td colspan="7">
                             <div class="empty-state">
-                                <div class="empty-icon">📭</div>
+                                <div class="empty-icon"><i class="fi fi-rr-mailbox" style="font-size:3rem"></i></div>
                                 <h3>Belum ada barang</h3>
                             </div>
                         </td>

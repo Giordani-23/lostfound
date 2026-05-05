@@ -16,10 +16,10 @@
             <div class="card-body" style="padding:2.5rem">
 
                 @if($errors->any())
-                    <div class="alert alert-error" style="border-radius:var(--radius-sm)">❌ {{ $errors->first() }}</div>
+                    <div class="alert alert-error" style="border-radius:var(--radius-sm)"><i class="fi fi-sr-cross-circle" style="margin-right:6px"></i> {{ $errors->first() }}</div>
                 @endif
                 @if(session('success'))
-                    <div class="alert alert-success" style="border-radius:var(--radius-sm)">✨ {{ session('success') }}</div>
+                    <div class="alert alert-success" style="border-radius:var(--radius-sm)"><i class="fi fi-sr-check-circle" style="margin-right:6px"></i> {{ session('success') }}</div>
                 @endif
 
                 <form action="{{ route('login.post') }}" method="POST">
@@ -38,7 +38,7 @@
                                style="padding:1rem 1.25rem;border-radius:12px;font-weight:500;background:var(--bg)">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:2rem;padding:1.15rem;font-size:1.1rem;border-radius:16px">
-                        Masuk Dashboard 🚀
+                        Masuk Dashboard <i class="fi fi-rr-arrow-right" style="margin-left:6px"></i>
                     </button>
                 </form>
 

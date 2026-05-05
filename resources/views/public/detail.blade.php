@@ -23,7 +23,7 @@
                                  style="width:100%;height:100%;object-fit:cover">
                         @else
                             <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);font-weight:600;gap:8px">
-                                <span style="font-size:4rem;opacity:0.5">📷</span>
+                                <span style="font-size:4rem;opacity:0.5"><i class="fi fi-rr-camera" style="font-size:4rem"></i></span>
                                 <p>Belum ada foto</p>
                             </div>
                         @endif
@@ -36,11 +36,11 @@
                 <div class="d-flex align-center gap-2 mb-3">
                     <span class="badge badge-info" style="font-size:0.85rem">{{ $barang->kode_unik }}</span>
                     @if($barang->status === 'tersimpan')
-                        <span class="badge" style="background:#ECFDF5;color:#047857;font-size:0.85rem">✅ Tersedia untuk Diklaim</span>
+                        <span class="badge" style="background:#ECFDF5;color:#047857;font-size:0.85rem"><i class="fi fi-sr-check-circle" style="margin-right:3px"></i> Tersedia untuk Diklaim</span>
                     @elseif($barang->status === 'diklaim')
-                        <span class="badge" style="background:#FFFBEB;color:#B45309;font-size:0.85rem">⏳ Sedang Diverifikasi</span>
+                        <span class="badge" style="background:#FFFBEB;color:#B45309;font-size:0.85rem"><i class="fi fi-rr-clock-three" style="margin-right:3px"></i> Sedang Diverifikasi</span>
                     @else
-                        <span class="badge" style="background:#F3F4F6;color:#374151;font-size:0.85rem">✔️ Sudah Dikembalikan</span>
+                        <span class="badge" style="background:#F3F4F6;color:#374151;font-size:0.85rem"><i class="fi fi-rr-check-double" style="margin-right:3px"></i> Sudah Dikembalikan</span>
                     @endif
                 </div>
 
@@ -51,24 +51,24 @@
                 {{-- INFO DETAILS --}}
                 <div style="background:#fff;border-radius:var(--radius);padding:1.5rem;border:1px solid var(--border);margin-bottom:2rem;display:flex;flex-direction:column;gap:1rem">
                     <div style="display:grid;grid-template-columns:120px 1fr;gap:1rem;font-size:0.95rem">
-                        <span style="color:var(--text-muted);font-weight:700">📁 Kategori</span>
+                        <span style="color:var(--text-muted);font-weight:700"><i class="fi fi-rr-folder" style="margin-right:4px"></i> Kategori</span>
                         <span style="font-weight:600">{{ $barang->kategori }}</span>
                     </div>
                     <div style="display:grid;grid-template-columns:120px 1fr;gap:1rem;font-size:0.95rem">
-                        <span style="color:var(--text-muted);font-weight:700">📍 Lokasi</span>
+                        <span style="color:var(--text-muted);font-weight:700"><i class="fi fi-rr-marker" style="margin-right:4px"></i> Lokasi</span>
                         <span style="font-weight:600">{{ $barang->lokasi_ditemukan }}</span>
                     </div>
                     <div style="display:grid;grid-template-columns:120px 1fr;gap:1rem;font-size:0.95rem">
-                        <span style="color:var(--text-muted);font-weight:700">📅 Tanggal</span>
+                        <span style="color:var(--text-muted);font-weight:700"><i class="fi fi-rr-calendar" style="margin-right:4px"></i> Tanggal</span>
                         <span style="font-weight:600">{{ \Carbon\Carbon::parse($barang->tanggal_ditemukan)->translatedFormat('d F Y') }}, {{ substr($barang->jam_ditemukan, 0, 5) }} WIB</span>
                     </div>
                     <div style="display:grid;grid-template-columns:120px 1fr;gap:1rem;font-size:0.95rem">
-                        <span style="color:var(--text-muted);font-weight:700">🔧 Kondisi</span>
+                        <span style="color:var(--text-muted);font-weight:700"><i class="fi fi-rr-wrench-simple" style="margin-right:4px"></i> Kondisi</span>
                         <span style="font-weight:600">{{ $barang->kondisi }}</span>
                     </div>
                     @if($barang->deskripsi)
                     <div style="display:grid;grid-template-columns:120px 1fr;gap:1rem;font-size:0.95rem;padding-top:1rem;border-top:1px dashed var(--border)">
-                        <span style="color:var(--text-muted);font-weight:700">📝 Keterangan</span>
+                        <span style="color:var(--text-muted);font-weight:700"><i class="fi fi-rr-document" style="margin-right:4px"></i> Keterangan</span>
                         <span style="font-weight:500;line-height:1.6">{{ $barang->deskripsi }}</span>
                     </div>
                     @endif
@@ -77,14 +77,14 @@
                 {{-- FORM KLAIM --}}
                 @if($barang->status === 'tersimpan')
                     <div style="background:var(--primary-subtle);border-radius:var(--radius);padding:2rem;border:2px solid rgba(255,122,0,0.1)">
-                        <h3 style="font-weight:900;font-size:1.4rem;color:var(--accent);margin-bottom:0.5rem">📝 Ini Barang Kamu?</h3>
+                        <h3 style="font-weight:900;font-size:1.4rem;color:var(--accent);margin-bottom:0.5rem"><i class="fi fi-rr-document-signed" style="margin-right:6px"></i> Ini Barang Kamu?</h3>
                         <p style="font-size:0.95rem;color:var(--text-muted);font-weight:500;margin-bottom:1.5rem">
                             Isi form di bawah untuk klaim. Pastikan kamu nyebutin <strong>ciri khusus</strong> yang cuma kamu yang tahu biar gampang diverifikasi petugas.
                         </p>
 
                         @if($errors->any())
                             <div class="alert alert-error mb-3" style="background:#fff">
-                                ❌ {{ $errors->first() }}
+                                <i class="fi fi-sr-cross-circle" style="margin-right:4px"></i> {{ $errors->first() }}
                             </div>
                         @endif
 
@@ -117,7 +117,7 @@
                             </div>
                             
                             <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:1rem;font-size:1.1rem;padding:1.2rem">
-                                🚀 Kirim Pengajuan Klaim
+                                <i class="fi fi-rr-paper-plane" style="margin-right:6px"></i> Kirim Pengajuan Klaim
                             </button>
                         </form>
                     </div>
@@ -125,14 +125,14 @@
                 @elseif($barang->status === 'diklaim')
                     <div class="alert alert-warning" style="padding:1.5rem">
                         <div>
-                            <h4 style="font-weight:800;font-size:1.1rem;margin-bottom:0.25rem;color:#92400E">⏳ Sedang Diverifikasi</h4>
+                            <h4 style="font-weight:800;font-size:1.1rem;margin-bottom:0.25rem;color:#92400E"><i class="fi fi-rr-clock-three" style="margin-right:4px"></i> Sedang Diverifikasi</h4>
                             <p style="color:#B45309;font-weight:500">Ada yang lagi ngajuin klaim buat barang ini. Kalau ngerasa ini punyamu, langsung datengin petugas piket aja ya!</p>
                         </div>
                     </div>
                 @else
                     <div class="alert alert-success" style="padding:1.5rem">
                         <div>
-                            <h4 style="font-weight:800;font-size:1.1rem;margin-bottom:0.25rem;color:#065F46">✅ Sudah Diambil</h4>
+                            <h4 style="font-weight:800;font-size:1.1rem;margin-bottom:0.25rem;color:#065F46"><i class="fi fi-sr-check-circle" style="margin-right:4px"></i> Sudah Diambil</h4>
                             <p style="color:#047857;font-weight:500">Barang ini udah berhasil balik ke pemilik aslinya. Yay!</p>
                         </div>
                     </div>

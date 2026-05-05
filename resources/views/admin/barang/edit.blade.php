@@ -12,7 +12,7 @@
 <div style="max-width:700px">
     <div class="card card-body">
         @if($errors->any())
-            <div class="alert alert-error">❌ {{ $errors->first() }}</div>
+            <div class="alert alert-error"><i class="fi fi-sr-cross-circle" style="margin-right:6px"></i> {{ $errors->first() }}</div>
         @endif
 
         <form action="{{ route('admin.barang.update', $barang->id) }}" method="POST">
@@ -80,7 +80,7 @@
             </div>
 
             <div style="display:flex;gap:1rem">
-                <button type="submit" class="btn btn-primary btn-lg">💾 Simpan Perubahan</button>
+                <button type="submit" class="btn btn-primary btn-lg"><i class="fi fi-rr-disk" style="margin-right:4px"></i> Simpan Perubahan</button>
                 <a href="{{ route('admin.barang.show', $barang->id) }}" class="btn btn-secondary btn-lg">Batal</a>
             </div>
         </form>

@@ -6,7 +6,7 @@
 
 <div style="background:var(--bg-card);padding:4rem 2rem;border-bottom:1px solid var(--border)">
     <div style="max-width:1200px;margin:0 auto;text-align:center">
-        <h1 style="font-size:2.5rem;font-weight:900;color:var(--accent);margin-bottom:1rem;letter-spacing:-0.03em">📦 Galeri Barang Temuan</h1>
+        <h1 style="font-size:2.5rem;font-weight:900;color:var(--accent);margin-bottom:1rem;letter-spacing:-0.03em"><i class="fi fi-rr-box-open" style="margin-right:8px"></i> Galeri Barang Temuan</h1>
         <p style="font-size:1.1rem;color:var(--text-muted);font-weight:500;max-width:600px;margin:0 auto">Semua barang yang ditemukan di area sekolah ada di sini. Coba cari barangmu pakai filter di bawah.</p>
     </div>
 </div>
@@ -35,7 +35,7 @@
                         <input type="text" name="lokasi" class="form-control" placeholder="cth: Kantin..." value="{{ request('lokasi') }}" style="border-radius:var(--radius-pill);padding:0.75rem 1.5rem">
                     </div>
                     <div style="display:flex;gap:0.75rem">
-                        <button type="submit" class="btn btn-primary" style="padding:0.75rem 1.5rem;border-radius:var(--radius-pill)">🔍 Cari</button>
+                        <button type="submit" class="btn btn-primary" style="padding:0.75rem 1.5rem;border-radius:var(--radius-pill)"><i class="fi fi-rr-search" style="margin-right:4px"></i> Cari</button>
                         @if(request()->anyFilled(['search', 'kategori', 'lokasi']))
                             <a href="{{ route('barang.index') }}" class="btn btn-secondary" style="padding:0.75rem 1.5rem;border-radius:var(--radius-pill)">Reset</a>
                         @endif
@@ -47,13 +47,13 @@
         {{-- HASIL --}}
         @if($barangs->isEmpty())
             <div class="empty-state">
-                <div class="empty-icon">📭</div>
+                <div class="empty-icon"><i class="fi fi-rr-mailbox" style="font-size:3rem"></i></div>
                 <h3>Waduh, Nggak Ketemu!</h3>
                 <p>Coba ganti kata kunci atau filter pencariannya ya.</p>
             </div>
         @else
             <p style="color:var(--text-muted);font-weight:600;font-size:0.9rem;margin-bottom:1.5rem">
-                ✨ Ketemu {{ $barangs->total() }} barang
+                <i class="fi fi-rr-sparkles" style="margin-right:4px"></i> Ketemu {{ $barangs->total() }} barang
             </p>
             
             <div class="barang-grid">
@@ -63,21 +63,21 @@
                         @if($barang->foto_utama)
                             <img src="{{ asset('uploads/barang/' . $barang->foto_utama) }}" alt="{{ $barang->nama_barang }}">
                         @else
-                            <div class="no-photo"><span>📷</span>Belum ada foto</div>
+                            <div class="no-photo"><span><i class="fi fi-rr-camera"></i></span>Belum ada foto</div>
                         @endif
                         <div style="position:absolute;top:25px;right:25px">
                             @if($barang->status === 'tersimpan')
-                                <span class="badge" style="background:#ECFDF5;color:#047857;box-shadow:0 4px 10px rgba(0,0,0,0.1)">✅ Tersimpan</span>
+                                <span class="badge" style="background:#ECFDF5;color:#047857;box-shadow:0 4px 10px rgba(0,0,0,0.1)"><i class="fi fi-sr-check-circle" style="margin-right:3px"></i> Tersimpan</span>
                             @elseif($barang->status === 'diklaim')
-                                <span class="badge" style="background:#FFFBEB;color:#B45309;box-shadow:0 4px 10px rgba(0,0,0,0.1)">⏳ Proses Klaim</span>
+                                <span class="badge" style="background:#FFFBEB;color:#B45309;box-shadow:0 4px 10px rgba(0,0,0,0.1)"><i class="fi fi-rr-clock-three" style="margin-right:3px"></i> Proses Klaim</span>
                             @endif
                         </div>
                     </div>
                     <div class="barang-card-body">
                         <h3>{{ $barang->nama_barang }}</h3>
                         <div class="barang-card-meta">
-                            <span>📍 {{ $barang->lokasi_ditemukan }}</span>
-                            <span>📅 {{ \Carbon\Carbon::parse($barang->tanggal_ditemukan)->translatedFormat('d M Y') }}</span>
+                            <span><i class="fi fi-rr-marker" style="margin-right:4px"></i> {{ $barang->lokasi_ditemukan }}</span>
+                            <span><i class="fi fi-rr-calendar" style="margin-right:4px"></i> {{ \Carbon\Carbon::parse($barang->tanggal_ditemukan)->translatedFormat('d M Y') }}</span>
                         </div>
                         <div class="d-flex justify-between align-center">
                             <span class="badge badge-info">{{ $barang->kategori }}</span>

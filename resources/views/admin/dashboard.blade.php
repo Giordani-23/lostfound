@@ -8,28 +8,28 @@
 {{-- STATS --}}
 <div class="stats-grid">
     <div class="stat-card">
-        <div class="stat-icon blue">📦</div>
+        <div class="stat-icon blue"><i class="fi fi-rr-box-open"></i></div>
         <div class="stat-info">
             <h3>{{ $totalBarang }}</h3>
             <p>Total Barang</p>
         </div>
     </div>
     <div class="stat-card">
-        <div class="stat-icon green">✅</div>
+        <div class="stat-icon green"><i class="fi fi-rr-check-circle"></i></div>
         <div class="stat-info">
             <h3>{{ $totalTersimpan }}</h3>
             <p>Menunggu Pemilik</p>
         </div>
     </div>
     <div class="stat-card">
-        <div class="stat-icon gold">⏳</div>
+        <div class="stat-icon gold"><i class="fi fi-rr-clock-three"></i></div>
         <div class="stat-info">
             <h3>{{ $totalKlaimMenunggu }}</h3>
             <p>Klaim Perlu Diverifikasi</p>
         </div>
     </div>
     <div class="stat-card">
-        <div class="stat-icon green">🎉</div>
+        <div class="stat-icon green"><i class="fi fi-rr-party-horn"></i></div>
         <div class="stat-info">
             <h3>{{ $totalDikembalikan }}</h3>
             <p>Berhasil Dikembalikan</p>
@@ -42,13 +42,13 @@
     {{-- KLAIM MENUNGGU --}}
     <div class="card">
         <div class="card-header">
-            <h3>⏳ Klaim Perlu Diverifikasi</h3>
+            <h3><i class="fi fi-rr-clock-three" style="margin-right:6px"></i> Klaim Perlu Diverifikasi</h3>
             <a href="{{ route('admin.klaim.index', ['status'=>'menunggu']) }}" class="btn btn-sm btn-outline">Lihat Semua</a>
         </div>
         @if($klaimTerbaru->isEmpty())
             <div class="card-body">
                 <div class="empty-state" style="padding:1.5rem">
-                    <div class="empty-icon" style="font-size:2rem">✅</div>
+                    <div class="empty-icon" style="font-size:2rem"><i class="fi fi-rr-check-circle" style="font-size:2rem"></i></div>
                     <p>Tidak ada klaim yang menunggu</p>
                 </div>
             </div>
@@ -84,7 +84,7 @@
     {{-- BARANG TERBARU --}}
     <div class="card">
         <div class="card-header">
-            <h3>📦 Barang Terbaru</h3>
+            <h3><i class="fi fi-rr-box-open" style="margin-right:6px"></i> Barang Terbaru</h3>
             <a href="{{ route('admin.barang.create') }}" class="btn btn-sm btn-accent">+ Tambah</a>
         </div>
         @if($barangTerbaru->isEmpty())

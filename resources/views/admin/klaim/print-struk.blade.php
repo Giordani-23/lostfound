@@ -6,6 +6,9 @@
     <title>Struk Serah Terima — {{ $klaim->barang->kode_unik }}</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <style>
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -242,7 +245,7 @@
 </div>
 
 <div class="toolbar">
-    <button class="btn-print" onclick="window.print()">🖨️ Cetak Struk</button>
+    <button class="btn-print" onclick="window.print()"><i class="fi fi-rr-print" style="margin-right:4px"></i> Cetak Struk</button>
     <a href="{{ route('admin.klaim.show', $klaim->id) }}" class="btn-back">← Kembali</a>
 </div>
 <p class="tip">Pastikan thermal printer (58mm) sudah jadi default printer</p>

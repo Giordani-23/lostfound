@@ -9,13 +9,13 @@
 
     {{-- KOLOM KIRI: WEBCAM --}}
     <div class="card card-body">
-        <h3 style="font-weight:700;margin-bottom:1rem">📷 Foto Barang</h3>
+        <h3 style="font-weight:700;margin-bottom:1rem"><i class="fi fi-rr-camera" style="margin-right:6px"></i> Foto Barang</h3>
 
         {{-- WEBCAM PREVIEW --}}
         <div class="webcam-container mb-2" id="webcam-box">
             <video id="webcam-video" autoplay playsinline></video>
             <div class="webcam-overlay">
-                <button type="button" class="btn btn-accent" id="btn-foto" onclick="ambilFoto()">📸 Ambil Foto</button>
+                <button type="button" class="btn btn-accent" id="btn-foto" onclick="ambilFoto()"><i class="fi fi-rr-camera" style="margin-right:4px"></i> Ambil Foto</button>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
             <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.5rem">Preview foto:</p>
             <img id="preview-img" src="" alt="Preview"
                  style="width:100%;border-radius:var(--radius-sm);border:2px solid var(--accent)">
-            <button type="button" class="btn btn-secondary btn-sm mt-1 w-100" onclick="ulangi()">🔄 Ulangi Foto</button>
+            <button type="button" class="btn btn-secondary btn-sm mt-1 w-100" onclick="ulangi()"><i class="fi fi-rr-refresh" style="margin-right:4px"></i> Ulangi Foto</button>
         </div>
 
         <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.75rem;text-align:center">— atau —</p>
@@ -41,16 +41,16 @@
 
         {{-- STATUS WEBCAM --}}
         <div id="webcam-status" class="alert alert-info" style="font-size:0.82rem;display:none">
-            ⚠️ Webcam tidak tersedia. Gunakan upload file.
+            <i class="fi fi-rr-triangle-warning" style="margin-right:4px"></i> Webcam tidak tersedia. Gunakan upload file.
         </div>
     </div>
 
     {{-- KOLOM KANAN: FORM --}}
     <div class="card card-body">
-        <h3 style="font-weight:700;margin-bottom:1rem">📝 Data Barang</h3>
+        <h3 style="font-weight:700;margin-bottom:1rem"><i class="fi fi-rr-document-signed" style="margin-right:6px"></i> Data Barang</h3>
 
         @if($errors->any())
-            <div class="alert alert-error">❌ {{ $errors->first() }}</div>
+            <div class="alert alert-error"><i class="fi fi-sr-cross-circle" style="margin-right:6px"></i> {{ $errors->first() }}</div>
         @endif
 
         <form action="{{ route('admin.barang.store') }}" method="POST" id="form-barang">
@@ -113,7 +113,7 @@
             </div>
 
             <button type="submit" class="btn btn-accent btn-block btn-lg" onclick="return cekFoto()">
-                💾 Simpan & Cetak Label QR
+                <i class="fi fi-rr-disk" style="margin-right:4px"></i> Simpan & Cetak Label QR
             </button>
         </form>
     </div>

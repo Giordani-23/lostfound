@@ -13,9 +13,9 @@
                 <label class="form-label">Filter Status</label>
                 <select name="status" class="form-control" onchange="this.form.submit()">
                     <option value="">Semua Klaim</option>
-                    <option value="menunggu" {{ request('status')=='menunggu' ? 'selected' : '' }}>⏳ Menunggu Verifikasi</option>
-                    <option value="disetujui" {{ request('status')=='disetujui' ? 'selected' : '' }}>✅ Disetujui</option>
-                    <option value="ditolak" {{ request('status')=='ditolak' ? 'selected' : '' }}>❌ Ditolak</option>
+                    <option value="menunggu" {{ request('status')=='menunggu' ? 'selected' : '' }}><i class="fi fi-rr-clock-three"></i> Menunggu Verifikasi</option>
+                    <option value="disetujui" {{ request('status')=='disetujui' ? 'selected' : '' }}>Disetujui</option>
+                    <option value="ditolak" {{ request('status')=='ditolak' ? 'selected' : '' }}>Ditolak</option>
                 </select>
             </div>
             <a href="{{ route('admin.klaim.index') }}" class="btn btn-secondary">Reset</a>
@@ -49,11 +49,11 @@
                     <td style="font-size:0.85rem">{{ $klaim->created_at->format('d/m/Y H:i') }}</td>
                     <td>
                         @if($klaim->status === 'menunggu')
-                            <span class="badge badge-warning">⏳ Menunggu</span>
+                            <span class="badge badge-warning"><i class="fi fi-rr-clock-three" style="margin-right:3px"></i> Menunggu</span>
                         @elseif($klaim->status === 'disetujui')
-                            <span class="badge badge-success">✅ Disetujui</span>
+                            <span class="badge badge-success"><i class="fi fi-sr-check-circle" style="margin-right:3px"></i> Disetujui</span>
                         @else
-                            <span class="badge badge-danger">❌ Ditolak</span>
+                            <span class="badge badge-danger"><i class="fi fi-sr-cross-circle" style="margin-right:3px"></i> Ditolak</span>
                         @endif
                     </td>
                     <td>
@@ -66,7 +66,7 @@
                     <tr>
                         <td colspan="5">
                             <div class="empty-state">
-                                <div class="empty-icon">📭</div>
+                                <div class="empty-icon"><i class="fi fi-rr-mailbox" style="font-size:3rem"></i></div>
                                 <h3>Tidak ada klaim</h3>
                             </div>
                         </td>

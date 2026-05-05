@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
+/* ─── FLATICON UICONS ALIGNMENT ─── */
+i[class^="fi-"], i[class*=" fi-"] {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    line-height: 1;
+}
+
 /* ─── CSS VARIABLES (MODERN ORANGE & WHITE) ─── */
 :root {
     --primary: #FF7A00;
